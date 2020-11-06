@@ -64,15 +64,7 @@ def search(src, target):
                     return path
                 ss = Node(state=state, parent=node, action=action)
                 frontier.add(ss)
-    # Base case if Target found
-    # Base case if limit exceeded
-    # Add source to visited_states
-    # Find possible slides up, down, left right to current empty site
-    ### Jump to possible_moves function
-    # For all possible moves got from the possible moves function
-    # Check if src equals to new targets
-    # Return True if target found in given depth limit
-
+    
 
 def index(myList, v):
     for i, x in enumerate(myList):
@@ -83,9 +75,7 @@ def index(myList, v):
 def possible_moves(state):
     # Find index of empty spot and assign it to b
     b = index(state, 0)
-    #'d' for down, 'u' for up, 'r' for right, 'l' for left - directions array
-    #Add all possible direction into directions array - Hint using if statements
-    # If direction is possible then add state to move
+   
     d = []
     if b[0] < 2:
         d.append('Down')
@@ -95,18 +85,15 @@ def possible_moves(state):
         d.append('Right')
     if b[1] > 0:
         d.append('Left')
-    # for all possible directions find the state if that move is played
-    ### Jump to gen function to generate all possible moves in the given directions
     pos_moves = []
     for i in d:
         move = gen(state, i, b)
         pos_moves.append((i ,move))
-    # return all possible moves only if the move not in visited_states
     return pos_moves
 
 
-def gen(state, m, b): # m(move) is direction to slide, b(blank)is index of empty spot
-    # create a copy of current state to test the move
+def gen(state, m, b): 
+    
     temp = deepcopy(state)
     if m == 'Up':
         temp[b[0]][b[1]] , temp[b[0] - 1][b[1]] = temp[b[0] - 1][b[1]] , temp[b[0]][b[1]]
@@ -116,8 +103,8 @@ def gen(state, m, b): # m(move) is direction to slide, b(blank)is index of empty
         temp[b[0]][b[1]] , temp[b[0]][b[1] - 1] = temp[b[0]][b[1] - 1] , temp[b[0]][b[1]]
     elif m == 'Right':
         temp[b[0]][b[1]] , temp[b[0]][b[1] + 1] = temp[b[0]][b[1] + 1] , temp[b[0]][b[1]]
-    # if move is to slide empty spot to the left and so on
-    # return new state with tested move to later check if "src == target"
+    
+    
     return temp
 
 
